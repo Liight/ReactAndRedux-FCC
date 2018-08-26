@@ -10,15 +10,16 @@ class DisplayMessages extends React.Component {
   }
   // add handleChange() and submitMessage() methods here
   handleChange(e){
-    this.setState(() => ({
-      input: "" + e.target.value
-    })); // cool functions inside this.setState
-  }
-  submitMessage(){
-    this.setState((messages, input) => {
-      input: "";
-      messages: [...messages, input];
+    this.setState({
+      input: e.target.value
     }); // cool functions inside this.setState
+  }
+  submitMessage(input, messages){
+    this.setState({
+      messages: [...this.state.messages, this.state.input],
+      input: ""
+    }); // cool functions inside this.setState
+    console.log(this.state.messages);
   }
   render() {
     return (
@@ -37,9 +38,9 @@ class DisplayMessages extends React.Component {
             Add the Message
           </button>
           <ul>
-            {this.state.messages.map(
-              (msg) => <li>{msg}</li>
-            )}
+            {() => (this.state.messages.map(
+              msg => <li>{msg}</li>
+            ))}
           </ul>
         { /* change code above this line */ }
       </div>
